@@ -2,7 +2,7 @@
 'Header:
 '
 '
-''Update art(add art)
+'
 '========================================================================================
 
 Option Explicit On
@@ -22,7 +22,7 @@ Public Class frmLab2
     Dim graTree As Graphics
 
     Dim bmpBuffer As Bitmap
-    'Dim bmpSprite As Bitmap = New Bitmap("..\Images\car.bmp") 'Update
+    Dim bmpSprite As Bitmap = New Bitmap("..\Images\birdLab2.png")
     Dim bmpBG As Bitmap = New Bitmap("..\Images\backgroundLab2.png")
     Dim bmpLake As Bitmap = New Bitmap("..\Images\lakeLab2.png")
     Dim bmpTree1 As Bitmap = New Bitmap("..\Images\tree1Lab2.png")
@@ -31,8 +31,8 @@ Public Class frmLab2
 
     Dim cshtSpriteX As Short = 10
     Dim cshtSpriteY As Short = 150
-    'Dim cshtSpriteW As Short = CShort(bmpSprite.Width \ cshtFrames)
-    ' Dim cshtSpriteH As Short = CShort(bmpSprite.Height)
+    Dim cshtSpriteW As Short = CShort(bmpSprite.Width \ cshtFrames)
+    Dim cshtSpriteH As Short = CShort(bmpSprite.Height)
 
     Dim cshtLakeX As Short
     Dim cshtLakeY As Short
@@ -58,6 +58,7 @@ Public Class frmLab2
     Dim recCurrentFrame As Rectangle
     Dim cshtFrameX As Short
     Dim cshtFrameY As Short
+    Dim cshtAnimatedSpriteLength As Short = CShort(bmpSprite.Width)
 
     Dim boolBG As Boolean
     Dim boolLake As Boolean
@@ -65,7 +66,7 @@ Public Class frmLab2
     Dim boolSprite As Boolean
 
     Dim cintTreeType As Integer
-    'Dim cshtAnimatedSpriteLength As Short = CShort(bmpSprite.Width)
+
 
     Private Sub frmLab2_Load(sender As Object, e As EventArgs) Handles Me.Load
         '--------------------------------------------------------------------------------
@@ -75,8 +76,8 @@ Public Class frmLab2
         graBG = pnlLab2.CreateGraphics
         bmpBuffer = New Bitmap(pnlLab2.Width, pnlLab2.Height, graBG)
         graBGBuffer = Graphics.FromImage(bmpBuffer)
-        graSprite = Graphics.FromImage(bmpBuffer)
-        'bmpSprite.MakeTransparent(Color.FromArgb(255, 0, 255))
+        graSprite = pnlLab2.CreateGraphics
+        bmpSprite.MakeTransparent(Color.FromArgb(255, 0, 255))
         graLake = pnlLab2.CreateGraphics
         bmpLake.MakeTransparent(Color.FromArgb(255, 0, 255))
         graTree = pnlLab2.CreateGraphics
@@ -115,6 +116,10 @@ Public Class frmLab2
             'graTree.DrawImageUnscaled("bmpTree" + (cintTreeType + 1).ToString, cshtTreeX, cshtTreeY)
             'graBG.DrawImageUnscaled(bmpBuffer, 0, 0)
         End If
+        If boolSprite = True Then
+            graSprite.DrawImageUnscaled(bmpSprite, cshtSpriteX, cshtSpriteY)
+
+        End If
 
     End Sub
 
@@ -132,6 +137,11 @@ Public Class frmLab2
             graTree.DrawImageUnscaled(bmpTree1, cshtTreeX, cshtTreeY)
             cintTreeType += 1
         End If
+        sUpdateScreen()
+    End Sub
+
+    Private Sub btnCharacter_Click(sender As Object, e As EventArgs) Handles btnCharacter.Click
+        boolSprite = True
         sUpdateScreen()
     End Sub
 End Class
