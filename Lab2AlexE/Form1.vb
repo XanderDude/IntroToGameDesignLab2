@@ -22,7 +22,6 @@ Option Explicit On
 Option Strict On
 
 Imports System.Drawing.Drawing2D
-Imports System.Threading
 
 Public Class frmLab2
 
