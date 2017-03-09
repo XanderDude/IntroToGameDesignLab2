@@ -1,8 +1,17 @@
 ﻿'========================================================================================
-'Header:
+'Created by: Alex Easter & Sarah Reilly
+'Name: Lab2
+'Class: CS 161 Section A
+'Date started: 3/1/17
+'Date due: 3/8/17
+'
+'Summary: 
+'
+'TODO:
 '
 '
-'
+'Bugs:
+' 
 '========================================================================================
 
 Option Explicit On
@@ -47,13 +56,7 @@ Public Class frmLab2
     Dim cshtSpriteXStep As Short = 0
     Dim cshtSpriteYStep As Short = 0
 
-    Dim cshtBGXStep As Short = -1
-    Dim cshtBGYStep As Short = 0
-
-    Dim cshtBGX As Short
-
     Dim mtxSprite As Matrix
-    Dim mtxBG As Matrix
 
     Dim recCurrentFrame As Rectangle
     Dim cshtFrameX As Short
@@ -67,9 +70,11 @@ Public Class frmLab2
 
     Dim cintTreeType As Integer
 
+    Dim cpntPoly1(5) As Point
+
     Private Sub frmLab2_Load(sender As Object, e As EventArgs) Handles Me.Load
         '--------------------------------------------------------------------------------
-        'Description: 
+        'Description: Prepares graphics and text boxes.
         '--------------------------------------------------------------------------------
 
         graBG = pnlLab2.CreateGraphics
@@ -85,21 +90,44 @@ Public Class frmLab2
         bmpTree3.MakeTransparent(Color.FromArgb(255, 0, 255))
 
         mtxSprite = New Matrix(1, 0, 0, 1, cshtSpriteXStep, cshtSpriteYStep)
-        mtxBG = New Matrix(1, 0, 0, 1, cshtBGXStep, cshtBGYStep)
 
+        pnlLakePoints.Visible = False
+
+        txtLakePnt1X.Text = "0"
+        txtLakePnt1Y.Text = "0"
+        txtLakePnt2X.Text = "0"
+        txtLakePnt2Y.Text = "0"
+        txtLakePnt3X.Text = "0"
+        txtLakePnt3Y.Text = "0"
+        txtLakePnt4X.Text = "0"
+        txtLakePnt4Y.Text = "0"
+        txtLakePnt5X.Text = "0"
+        txtLakePnt5Y.Text = "0"
+        txtLakePnt6X.Text = "0"
+        txtLakePnt6Y.Text = "0"
 
     End Sub
 
     Private Sub btnBackground_Click(sender As Object, e As EventArgs) Handles btnBackground.Click
+        '--------------------------------------------------------------------------------
+        'Description: On click, allow sUpdateScreen to display the background.
+        '--------------------------------------------------------------------------------
         boolBG = True
         sUpdateScreen()
     End Sub
 
     Private Sub btnLake_Click(sender As Object, e As EventArgs) Handles btnLake.Click
+        '--------------------------------------------------------------------------------
+        'Description: On click, make pnlLakePoints visible and allow sUpdateScreen to 
+        '             display the lake.
+        '--------------------------------------------------------------------------------
         boolLake = True
-        sUpdateScreen()
+        pnlLakePoints.Visible = True
     End Sub
     Private Sub sUpdateScreen()
+        '--------------------------------------------------------------------------------
+        'Description: When called, prepares and displays graphics in pnlLab2
+        '--------------------------------------------------------------------------------
         ' Clear graphic
         graBG.Clear(Color.White)
 
@@ -108,9 +136,8 @@ Public Class frmLab2
             graBG.DrawImageUnscaled(bmpBuffer, 0, 0)
         End If
         If boolLake = True Then
-
-            graLake.DrawImageUnscaled(bmpLake, cshtLakeX, cshtLakeY)
-            'graBG.DrawImageUnscaled(bmpBuffer, 0, 0)
+            graLake.FillPolygon(Brushes.LightBlue, cpntPoly1)
+            graLake.DrawPolygon(Pens.Blue, cpntPoly1)
         End If
         If boolTree = True Then
 
@@ -148,10 +175,10 @@ Public Class frmLab2
 
     Private Sub frmLab2_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         ' Constant speed the character moves at
-        const cshtSpeed as Short = 5
-        
+        Const cshtSpeed As Short = 5
+
         ' Move the character
-        select e.KeyCode
+        Select Case e.KeyCode
             Case Keys.W
                 cshtSpriteY -= cshtSpeed
             Case Keys.S
@@ -164,6 +191,72 @@ Public Class frmLab2
 
         ' Update the screen
         sUpdateScreen()
+    End Sub
+    Private Sub btnLakePntsConfirm_Click(sender As Object, e As EventArgs) Handles btnLakePntsConfirm.Click
+        '--------------------------------------------------------------------------------
+        'Description: On click, set the Lake's points according to txtLakePnt(s) in 
+        '             pnlLakePoints.
+        '             Close pnlLakePoints and call sUpdateScreen.
+        '--------------------------------------------------------------------------------
+
+        pnlLakePoints.Visible = False
+
+        cpntPoly1(0).X = CInt(txtLakePnt1X.Text)
+        cpntPoly1(0).Y = CInt(txtLakePnt1Y.Text)
+        cpntPoly1(1).X = CInt(txtLakePnt2X.Text)
+        cpntPoly1(1).Y = CInt(txtLakePnt2Y.Text)
+        cpntPoly1(2).X = CInt(txtLakePnt3X.Text)
+        cpntPoly1(2).Y = CInt(txtLakePnt3Y.Text)
+        cpntPoly1(3).X = CInt(txtLakePnt4X.Text)
+        cpntPoly1(3).Y = CInt(txtLakePnt4Y.Text)
+        cpntPoly1(4).X = CInt(txtLakePnt5X.Text)
+        cpntPoly1(4).Y = CInt(txtLakePnt5Y.Text)
+        cpntPoly1(5).X = CInt(txtLakePnt6X.Text)
+        cpntPoly1(5).Y = CInt(txtLakePnt6Y.Text)
+
+        sUpdateScreen()
+
+    End Sub
+
+    Private Sub btnLakeReset_Click(sender As Object, e As EventArgs) Handles btnLakeReset.Click
+        '--------------------------------------------------------------------------------
+        'Description: On click, reset text boxes in pnlLakePoints, reset cpntPoly1(), and
+        '             clear graphics.
+        '             Call sUpdateScreen.
+        '--------------------------------------------------------------------------------
+
+        pnlLakePoints.Visible = False
+        boolLake = False
+        txtLakePnt1X.Text = "0"
+        txtLakePnt1Y.Text = "0"
+        txtLakePnt2X.Text = "0"
+        txtLakePnt2Y.Text = "0"
+        txtLakePnt3X.Text = "0"
+        txtLakePnt3Y.Text = "0"
+        txtLakePnt4X.Text = "0"
+        txtLakePnt4Y.Text = "0"
+        txtLakePnt5X.Text = "0"
+        txtLakePnt5Y.Text = "0"
+        txtLakePnt6X.Text = "0"
+        txtLakePnt6Y.Text = "0"
+
+        cpntPoly1(0).X = CInt(txtLakePnt1X.Text)
+        cpntPoly1(0).Y = CInt(txtLakePnt1Y.Text)
+        cpntPoly1(1).X = CInt(txtLakePnt2X.Text)
+        cpntPoly1(1).Y = CInt(txtLakePnt2Y.Text)
+        cpntPoly1(2).X = CInt(txtLakePnt3X.Text)
+        cpntPoly1(2).Y = CInt(txtLakePnt3Y.Text)
+        cpntPoly1(3).X = CInt(txtLakePnt4X.Text)
+        cpntPoly1(3).Y = CInt(txtLakePnt4Y.Text)
+        cpntPoly1(4).X = CInt(txtLakePnt5X.Text)
+        cpntPoly1(4).Y = CInt(txtLakePnt5Y.Text)
+        cpntPoly1(5).X = CInt(txtLakePnt6X.Text)
+        cpntPoly1(5).Y = CInt(txtLakePnt6Y.Text)
+
+        graLake.Clear(pnlLab2.BackColor)
+        sUpdateScreen()
+
+
     End Sub
 End Class
 
