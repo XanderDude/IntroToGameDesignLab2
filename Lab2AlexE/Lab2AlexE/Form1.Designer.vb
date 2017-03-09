@@ -27,7 +27,7 @@ Partial Class frmLab2
         Me.btnTree = New System.Windows.Forms.Button()
         Me.btnCharacter = New System.Windows.Forms.Button()
         Me.pnlLab2 = New System.Windows.Forms.Panel()
-        Me.SuspendLayout()
+        Me.SuspendLayout
         '
         'btnBackground
         '
@@ -37,7 +37,7 @@ Partial Class frmLab2
         Me.btnBackground.Size = New System.Drawing.Size(75, 42)
         Me.btnBackground.TabIndex = 0
         Me.btnBackground.Text = "Background"
-        Me.btnBackground.UseVisualStyleBackColor = False
+        Me.btnBackground.UseVisualStyleBackColor = false
         '
         'btnLake
         '
@@ -47,7 +47,7 @@ Partial Class frmLab2
         Me.btnLake.Size = New System.Drawing.Size(75, 42)
         Me.btnLake.TabIndex = 1
         Me.btnLake.Text = "Lake"
-        Me.btnLake.UseVisualStyleBackColor = False
+        Me.btnLake.UseVisualStyleBackColor = false
         '
         'btnTree
         '
@@ -57,7 +57,7 @@ Partial Class frmLab2
         Me.btnTree.Size = New System.Drawing.Size(75, 42)
         Me.btnTree.TabIndex = 2
         Me.btnTree.Text = "Tree"
-        Me.btnTree.UseVisualStyleBackColor = False
+        Me.btnTree.UseVisualStyleBackColor = false
         '
         'btnCharacter
         '
@@ -67,7 +67,7 @@ Partial Class frmLab2
         Me.btnCharacter.Size = New System.Drawing.Size(75, 42)
         Me.btnCharacter.TabIndex = 3
         Me.btnCharacter.Text = "Character"
-        Me.btnCharacter.UseVisualStyleBackColor = False
+        Me.btnCharacter.UseVisualStyleBackColor = false
         '
         'pnlLab2
         '
@@ -79,7 +79,7 @@ Partial Class frmLab2
         '
         'frmLab2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Orange
         Me.ClientSize = New System.Drawing.Size(624, 441)
@@ -88,11 +88,12 @@ Partial Class frmLab2
         Me.Controls.Add(Me.btnTree)
         Me.Controls.Add(Me.btnLake)
         Me.Controls.Add(Me.btnBackground)
+        Me.KeyPreview = true
         Me.Name = "frmLab2"
         Me.Text = "Form1"
-        Me.ResumeLayout(False)
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
 
     Friend WithEvents btnBackground As Button
     Friend WithEvents btnLake As Button
