@@ -174,7 +174,7 @@ Public Class frmLab2
                 ' Set the pixel for all the required positions
                 for cshtOffsetX as short = 0 to cshtTreeScale - 1s
                     for cshtOffsetY as short = 0 to cshtTreeScale - 1s
-                        bmpTreeResized.SetPixel(cshtOldTreeX + cshtOffsetX, cshtOldTreeY + cshtOffsetY, colPixelColor)
+                        bmpTreeResized.SetPixel((cshtOldTreeX * cshtTreeScale) + cshtOffsetX, (cshtOldTreeY * cshtTreeScale) + cshtOffsetY, colPixelColor)
                     next
                 Next
             Next
@@ -213,7 +213,7 @@ Public Class frmLab2
 
     private Function fGetInputBox(strMessage as string, strTitle as string, shtDefaultValue as short, shtMinValue As Short, shtMaxValue As Short) As Short
         ' Declare variables
-        Dim strInput As string
+        Dim strInput As String
         Dim shtValue as Short
 
         ' Loop until the user enters a legit value
@@ -224,16 +224,16 @@ Public Class frmLab2
             ' User cancled input
             if strInput Is nothing
                 Continue While
-            End If
+            End if
 
             ' User entered invalid input
-            if not short.TryParse(strInput, shtValue)
+            if not Short.TryParse(strInput, shtValue)
                 MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
                 Continue While
             end if
 
             ' User entered invalid input
-            If shtValue < shtMinValue Or shtValue > shtMaxValue
+            if shtValue < shtMinValue Or shtValue > shtMaxValue
                 MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
                 Continue While
             end if
