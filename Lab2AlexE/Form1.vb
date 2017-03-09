@@ -5,13 +5,17 @@
 'Date started: 3/1/17
 'Date due: 3/8/17
 '
-'Summary: 
-'
+'Summary: A simple program that allows you to draw graphics on the screen. The Background
+'         draws the background. The Lake button gives you options for setting the points 
+'         to a lake. Confirm to draw the lake, and reset to erase the lake and clear the
+'         values. The Tree button lets you pick a place, type of tree, and the tree's scale.
+'         The Character button draws a bird that is controlled with WASD.
 'TODO:
 '
 '
 'Bugs:
-' 
+' - Giving incorrect values for the Lake's points will crash.
+' - Can't exit out of the input boxes.
 '========================================================================================
 
 Option Explicit On
@@ -160,14 +164,22 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnTree_Click(sender As Object, e As EventArgs) Handles btnTree.Click
+        '--------------------------------------------------------------------------------
+        'Description: When clicked, the user will be asked for values used to draw a tree.
+        '             A tree is then selected, scaled, and positioned. The screen is updated.
+        '--------------------------------------------------------------------------------
+
         Dim cshtTreeScale As Short
         Dim bmpOrignalTree As Bitmap
 
         ' Get the inputs
-        cshtTreeX = fGetInputBox("Please enter the x position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Width))
-        cshtTreeY = fGetInputBox("Please enter the y position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Height))
+        cshtTreeX = fGetInputBox("Please enter the x position of tree", "Tree Position", 0, 0,
+                                                                         CShort(pnlLab2.Width))
+        cshtTreeY = fGetInputBox("Please enter the y position of tree", "Tree Position", 0, 0,
+                                                                        CShort(pnlLab2.Height))
         cshtTreeType = fGetInputBox("Please enter the type of tree (1-3)", "Tree Type", 1, 1, 3)
-        cshtTreeScale = fGetInputBox("Please enter the scale of the tree (1-10)", "Tree Scale", 1, 1, 10)
+        cshtTreeScale = fGetInputBox("Please enter the scale of the tree (1-10)", "Tree Scale",
+                                                                                        1, 1, 10)
 
         ' Get the tree
         Select Case cshtTreeType
@@ -204,7 +216,8 @@ Public Class frmLab2
                 ' Set the pixel for all the required positions
                 For cshtOffsetX As Short = 0 To cshtTreeScale - 1S
                     For cshtOffsetY As Short = 0 To cshtTreeScale - 1S
-                        bmpTreeResized.SetPixel((cshtOldTreeX * cshtTreeScale) + cshtOffsetX, (cshtOldTreeY * cshtTreeScale) + cshtOffsetY, colPixelColor)
+                        bmpTreeResized.SetPixel((cshtOldTreeX * cshtTreeScale) + cshtOffsetX,
+                                    (cshtOldTreeY * cshtTreeScale) + cshtOffsetY, colPixelColor)
                     Next
                 Next
             Next
@@ -217,11 +230,19 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnCharacter_Click(sender As Object, e As EventArgs) Handles btnCharacter.Click
+        '--------------------------------------------------------------------------------------
+        'Description: When clicked, sUpdateScreen is called allowing the character to be drawn.
+        '--------------------------------------------------------------------------------------
+
         boolSprite = True
         sUpdateScreen()
     End Sub
 
     Private Sub frmLab2_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        '--------------------------------------------------------------------------------------
+        'Description: Allows the user to control the character sprite with WASD.
+        '--------------------------------------------------------------------------------------
+
         ' Constant speed the character moves at
         Const cshtSpeed As Short = 5
 
@@ -306,7 +327,11 @@ Public Class frmLab2
 
 
     End Sub
-    Private Function fGetInputBox(strMessage As String, strTitle As String, shtDefaultValue As Short, shtMinValue As Short, shtMaxValue As Short) As Short
+    Private Function fGetInputBox(strMessage As String, strTitle As String,
+            shtDefaultValue As Short, shtMinValue As Short, shtMaxValue As Short) As Short
+        '--------------------------------------------------------------------------------------
+        'Description: Checks the values return from the user in fGetInputBox
+        '--------------------------------------------------------------------------------------
 
         ' Declare variables
         Dim strInput As String
@@ -326,14 +351,16 @@ Public Class frmLab2
 
             ' User entered invalid input
             If Not Short.TryParse(strInput, shtValue) Then
-                MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
+                MessageBox.Show("Invalid number. Please enter a number between " &
+                                                shtMinValue & " and " & shtMaxValue)
                 Continue While
             End If
 
 
             ' User entered invalid input
             If shtValue < shtMinValue Or shtValue > shtMaxValue Then
-                MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
+                MessageBox.Show("Invalid number. Please enter a number between " &
+                                                shtMinValue & " and " & shtMaxValue)
                 Continue While
             End If
 
