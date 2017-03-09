@@ -67,7 +67,6 @@ Public Class frmLab2
 
     Dim cintTreeType As Integer
 
-
     Private Sub frmLab2_Load(sender As Object, e As EventArgs) Handles Me.Load
         '--------------------------------------------------------------------------------
         'Description: 
@@ -101,6 +100,8 @@ Public Class frmLab2
         sUpdateScreen()
     End Sub
     Private Sub sUpdateScreen()
+        ' Clear graphic
+        graBG.Clear(Color.White)
 
         graBGBuffer.DrawImageUnscaled(bmpBG, 0, 0)
         If boolBG = True Then
@@ -142,6 +143,26 @@ Public Class frmLab2
 
     Private Sub btnCharacter_Click(sender As Object, e As EventArgs) Handles btnCharacter.Click
         boolSprite = True
+        sUpdateScreen()
+    End Sub
+
+    Private Sub frmLab2_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        ' Constant speed the character moves at
+        const cshtSpeed as Short = 5
+        
+        ' Move the character
+        select e.KeyCode
+            Case Keys.W
+                cshtSpriteY -= cshtSpeed
+            Case Keys.S
+                cshtSpriteY += cshtSpeed
+            Case Keys.D
+                cshtSpriteX += cshtSpeed
+            Case Keys.A
+                cshtSpriteX -= cshtSpeed
+        End Select
+
+        ' Update the screen
         sUpdateScreen()
     End Sub
 End Class
