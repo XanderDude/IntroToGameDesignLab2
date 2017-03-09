@@ -35,8 +35,9 @@ Public Class frmLab2
     Dim bmpBG As Bitmap = New Bitmap("..\Images\backgroundLab2.png")
     Dim bmpLake As Bitmap = New Bitmap("..\Images\lakeLab2.png")
     Dim bmpTree1 As Bitmap = New Bitmap("..\Images\tree1Lab2.png")
-    Dim bmpTree2 As Bitmap = New Bitmap("..\Images\tree1Lab2.png")
-    Dim bmpTree3 As Bitmap = New Bitmap("..\Images\tree1Lab2.png")
+    Dim bmpTree2 As Bitmap = New Bitmap("..\Images\tree2Lab2.png")
+    Dim bmpTree3 As Bitmap = New Bitmap("..\Images\tree3Lab2.png")
+    Dim bmpTreeResized As Bitmap
 
     Dim cshtSpriteX As Short = 10
     Dim cshtSpriteY As Short = 150
@@ -52,6 +53,7 @@ Public Class frmLab2
     Dim cshtTreeY As Short
     Dim cshtTreeW As Short = CShort(bmpTree1.Width)
     Dim cshtTreeH As Short = CShort(bmpTree1.Height)
+    Dim cshtTreeType As Short
 
     Dim cshtSpriteXStep As Short = 0
     Dim cshtSpriteYStep As Short = 0
@@ -121,6 +123,7 @@ Public Class frmLab2
         'Description: On click, make pnlLakePoints visible and allow sUpdateScreen to 
         '             display the lake.
         '--------------------------------------------------------------------------------
+
         boolLake = True
         pnlLakePoints.Visible = True
     End Sub
@@ -128,43 +131,88 @@ Public Class frmLab2
         '--------------------------------------------------------------------------------
         'Description: When called, prepares and displays graphics in pnlLab2
         '--------------------------------------------------------------------------------
+
         ' Clear graphic
         graBG.Clear(Color.White)
 
+        ' Draw the BG
         graBGBuffer.DrawImageUnscaled(bmpBG, 0, 0)
         If boolBG = True Then
             graBG.DrawImageUnscaled(bmpBuffer, 0, 0)
         End If
+
+        ' Draw the lake
         If boolLake = True Then
             graLake.FillPolygon(Brushes.LightBlue, cpntPoly1)
             graLake.DrawPolygon(Pens.Blue, cpntPoly1)
         End If
-        If boolTree = True Then
 
-            'graTree.DrawImageUnscaled("bmpTree" + (cintTreeType + 1).ToString, cshtTreeX, cshtTreeY)
-            'graBG.DrawImageUnscaled(bmpBuffer, 0, 0)
+        ' Draw the tree
+        If boolTree = True Then
+            graTree.DrawImageUnscaled(bmpTreeResized, cshtTreeX, cshtTreeY)
         End If
+
+        ' Draw the sprite
         If boolSprite = True Then
             graSprite.DrawImageUnscaled(bmpSprite, cshtSpriteX, cshtSpriteY)
 
         End If
-
     End Sub
 
     Private Sub btnTree_Click(sender As Object, e As EventArgs) Handles btnTree.Click
+        Dim cshtTreeScale As Short
+        Dim bmpOrignalTree As Bitmap
+
+        ' Get the inputs
+        cshtTreeX = fGetInputBox("Please enter the x position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Width))
+        cshtTreeY = fGetInputBox("Please enter the y position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Height))
+        cshtTreeType = fGetInputBox("Please enter the type of tree (1-3)", "Tree Type", 1, 1, 3)
+        cshtTreeScale = fGetInputBox("Please enter the scale of the tree (1-10)", "Tree Scale", 1, 1, 10)
+
+        ' Get the tree
+        Select Case cshtTreeType
+            Case 1
+                bmpOrignalTree = bmpTree1
+            Case 2
+                bmpOrignalTree = bmpTree2
+            Case 3
+                bmpOrignalTree = bmpTree3
+            Case Else
+                ' Otherwise throw an exception
+                ' (This is needed so the compiler doesn't freak out)
+                Throw New Exception("Tree type was somehow set to a number that is out of range")
+        End Select
+
+        ' Set the tree height and width
+        cshtTreeW = CShort(bmpOrignalTree.Width) * cshtTreeScale
+        cshtTreeH = CShort(bmpOrignalTree.Height) * cshtTreeScale
+
+        ' Dispose the old tree 
+        ' Yes the ? is supose to be there,
+        ' it makes it so dispose doesnt get called if bmpTreeResized is null
+        bmpTreeResized?.Dispose()
+
+        ' Set the current tree bitmap
+        bmpTreeResized = New Bitmap(cshtTreeW, cshtTreeH)
+
+        ' resize the current bitmap
+        For cshtOldTreeX As Short = 0 To CShort(bmpOrignalTree.Width - 1)
+            For cshtOldTreeY As Short = 0 To CShort(bmpOrignalTree.Height - 1)
+                ' Get the pixel for that position
+                Dim colPixelColor As Color = bmpOrignalTree.GetPixel(cshtOldTreeX, cshtOldTreeY)
+
+                ' Set the pixel for all the required positions
+                For cshtOffsetX As Short = 0 To cshtTreeScale - 1S
+                    For cshtOffsetY As Short = 0 To cshtTreeScale - 1S
+                        bmpTreeResized.SetPixel((cshtOldTreeX * cshtTreeScale) + cshtOffsetX, (cshtOldTreeY * cshtTreeScale) + cshtOffsetY, colPixelColor)
+                    Next
+                Next
+            Next
+        Next
 
         boolTree = True
-        'graTree.Clear()
-        If cintTreeType = 2 Then
-            graTree.DrawImageUnscaled(bmpTree3, cshtTreeX, cshtTreeY)
-            cintTreeType = 1
-        ElseIf cintTreeType = 1 Then
-            graTree.DrawImageUnscaled(bmpTree2, cshtTreeX, cshtTreeY)
-            cintTreeType += 1
-        ElseIf cintTreeType = 0 Then
-            graTree.DrawImageUnscaled(bmpTree1, cshtTreeX, cshtTreeY)
-            cintTreeType += 1
-        End If
+
+        ' Update the screen
         sUpdateScreen()
     End Sub
 
@@ -258,5 +306,40 @@ Public Class frmLab2
 
 
     End Sub
+    Private Function fGetInputBox(strMessage As String, strTitle As String, shtDefaultValue As Short, shtMinValue As Short, shtMaxValue As Short) As Short
+
+        ' Declare variables
+        Dim strInput As String
+        Dim shtValue As Short
+
+
+        While True
+            ' Get user input
+            strInput = InputBox(strMessage, strTitle, CStr(shtDefaultValue))
+
+
+            ' User cancled input
+            If strInput Is Nothing Then
+
+                Continue While
+            End If
+
+            ' User entered invalid input
+            If Not Short.TryParse(strInput, shtValue) Then
+                MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
+                Continue While
+            End If
+
+
+            ' User entered invalid input
+            If shtValue < shtMinValue Or shtValue > shtMaxValue Then
+                MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
+                Continue While
+            End If
+
+
+            Return shtValue
+        End While
+    End Function
 End Class
 
