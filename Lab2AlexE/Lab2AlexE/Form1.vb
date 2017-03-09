@@ -126,7 +126,6 @@ Public Class frmLab2
         ' Draw the sprite
         If boolSprite = True Then
             graSprite.DrawImageUnscaled(bmpSprite, cshtSpriteX, cshtSpriteY)
-
         End If
     End Sub
 
@@ -155,8 +154,8 @@ Public Class frmLab2
         End Select
         
         ' Set the tree height and width
-        cshtTreeH = CShort(bmpOrignalTree.Height) * cshtTreeScale
         cshtTreeW = CShort(bmpOrignalTree.Width) * cshtTreeScale
+        cshtTreeH = CShort(bmpOrignalTree.Height) * cshtTreeScale
 
         ' Dispose the old tree 
         ' Yes the ? is supose to be there,
@@ -173,8 +172,8 @@ Public Class frmLab2
                 dim colPixelColor as Color = bmpOrignalTree.GetPixel(cshtOldTreeX, cshtOldTreeY)
 
                 ' Set the pixel for all the required positions
-                for cshtNewTreeX as short = cshtOldTreeX * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + cshtTreeScale
-                    for cshtNewTreeY as short = cshtOldTreeY * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + cshtTreeScale
+                for cshtNewTreeX as short = cshtOldTreeX * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + (cshtTreeScale - 1S)
+                    for cshtNewTreeY as short = cshtOldTreeY * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + (cshtTreeScale - 1S)
                         bmpTreeResized.SetPixel(cshtNewTreeX, cshtNewTreeY, colPixelColor)
                     next
                 Next
