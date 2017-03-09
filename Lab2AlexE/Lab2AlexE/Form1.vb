@@ -136,8 +136,8 @@ Public Class frmLab2
         
         cshtTreeX = fGetInputBox("Please enter the x position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Width))
         cshtTreeY = fGetInputBox("Please enter the y position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Height))
-        cshtTreeType = fGetInputBox("Please enter the type of tree", "Tree Type", 1, 1, 3)
-        cshtTreeSize = fGetInputBox("Please enter the size of the tree", "Tree Size", 1, 1, 20)
+        cshtTreeType = fGetInputBox("Please enter the type of tree (1-3)", "Tree Type", 1, 1, 3)
+        cshtTreeSize = fGetInputBox("Please enter the scale of the tree (1-20)", "Tree Size", 1, 1, 20)
 
         ' Set the tree height and width
         cshtTreeH = CShort(bmpTree1.Height) * cshtTreeSize
