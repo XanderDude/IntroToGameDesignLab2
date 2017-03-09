@@ -55,9 +55,9 @@ Partial Class frmLab2
         Me.lblLakePnt1Y = New System.Windows.Forms.Label()
         Me.lblLakePnt1X = New System.Windows.Forms.Label()
         Me.lblChoosePoints = New System.Windows.Forms.Label()
-        Me.pnlLab2.SuspendLayout()
-        Me.pnlLakePoints.SuspendLayout()
-        Me.SuspendLayout()
+        Me.pnlLab2.SuspendLayout
+        Me.pnlLakePoints.SuspendLayout
+        Me.SuspendLayout
         '
         'btnBackground
         '
@@ -67,7 +67,7 @@ Partial Class frmLab2
         Me.btnBackground.Size = New System.Drawing.Size(75, 42)
         Me.btnBackground.TabIndex = 0
         Me.btnBackground.Text = "Background"
-        Me.btnBackground.UseVisualStyleBackColor = False
+        Me.btnBackground.UseVisualStyleBackColor = false
         '
         'btnLake
         '
@@ -77,7 +77,7 @@ Partial Class frmLab2
         Me.btnLake.Size = New System.Drawing.Size(75, 42)
         Me.btnLake.TabIndex = 1
         Me.btnLake.Text = "Lake"
-        Me.btnLake.UseVisualStyleBackColor = False
+        Me.btnLake.UseVisualStyleBackColor = false
         '
         'btnTree
         '
@@ -87,7 +87,7 @@ Partial Class frmLab2
         Me.btnTree.Size = New System.Drawing.Size(75, 42)
         Me.btnTree.TabIndex = 2
         Me.btnTree.Text = "Tree"
-        Me.btnTree.UseVisualStyleBackColor = False
+        Me.btnTree.UseVisualStyleBackColor = false
         '
         'btnCharacter
         '
@@ -97,7 +97,7 @@ Partial Class frmLab2
         Me.btnCharacter.Size = New System.Drawing.Size(75, 42)
         Me.btnCharacter.TabIndex = 3
         Me.btnCharacter.Text = "Character"
-        Me.btnCharacter.UseVisualStyleBackColor = False
+        Me.btnCharacter.UseVisualStyleBackColor = false
         '
         'pnlLab2
         '
@@ -152,7 +152,7 @@ Partial Class frmLab2
         Me.btnLakeReset.Size = New System.Drawing.Size(75, 23)
         Me.btnLakeReset.TabIndex = 26
         Me.btnLakeReset.Text = "Reset"
-        Me.btnLakeReset.UseVisualStyleBackColor = False
+        Me.btnLakeReset.UseVisualStyleBackColor = false
         '
         'btnLakePntsConfirm
         '
@@ -162,7 +162,7 @@ Partial Class frmLab2
         Me.btnLakePntsConfirm.Size = New System.Drawing.Size(75, 23)
         Me.btnLakePntsConfirm.TabIndex = 25
         Me.btnLakePntsConfirm.Text = "Confirm"
-        Me.btnLakePntsConfirm.UseVisualStyleBackColor = False
+        Me.btnLakePntsConfirm.UseVisualStyleBackColor = false
         '
         'txtLakePnt6Y
         '
@@ -182,7 +182,7 @@ Partial Class frmLab2
         '
         'lblLakePnt6Y
         '
-        Me.lblLakePnt6Y.AutoSize = True
+        Me.lblLakePnt6Y.AutoSize = true
         Me.lblLakePnt6Y.Location = New System.Drawing.Point(102, 149)
         Me.lblLakePnt6Y.Name = "lblLakePnt6Y"
         Me.lblLakePnt6Y.Size = New System.Drawing.Size(50, 13)
@@ -191,7 +191,7 @@ Partial Class frmLab2
         '
         'lblLakePnt6X
         '
-        Me.lblLakePnt6X.AutoSize = True
+        Me.lblLakePnt6X.AutoSize = true
         Me.lblLakePnt6X.Location = New System.Drawing.Point(4, 149)
         Me.lblLakePnt6X.Name = "lblLakePnt6X"
         Me.lblLakePnt6X.Size = New System.Drawing.Size(50, 13)
@@ -216,7 +216,7 @@ Partial Class frmLab2
         '
         'lblLakePnt5Y
         '
-        Me.lblLakePnt5Y.AutoSize = True
+        Me.lblLakePnt5Y.AutoSize = true
         Me.lblLakePnt5Y.Location = New System.Drawing.Point(102, 124)
         Me.lblLakePnt5Y.Name = "lblLakePnt5Y"
         Me.lblLakePnt5Y.Size = New System.Drawing.Size(50, 13)
@@ -225,7 +225,7 @@ Partial Class frmLab2
         '
         'lblLakePnt5X
         '
-        Me.lblLakePnt5X.AutoSize = True
+        Me.lblLakePnt5X.AutoSize = true
         Me.lblLakePnt5X.Location = New System.Drawing.Point(4, 124)
         Me.lblLakePnt5X.Name = "lblLakePnt5X"
         Me.lblLakePnt5X.Size = New System.Drawing.Size(50, 13)
@@ -250,7 +250,7 @@ Partial Class frmLab2
         '
         'lblLakePnt4Y
         '
-        Me.lblLakePnt4Y.AutoSize = True
+        Me.lblLakePnt4Y.AutoSize = true
         Me.lblLakePnt4Y.Location = New System.Drawing.Point(102, 99)
         Me.lblLakePnt4Y.Name = "lblLakePnt4Y"
         Me.lblLakePnt4Y.Size = New System.Drawing.Size(50, 13)
@@ -259,7 +259,7 @@ Partial Class frmLab2
         '
         'lblLakePnt4X
         '
-        Me.lblLakePnt4X.AutoSize = True
+        Me.lblLakePnt4X.AutoSize = true
         Me.lblLakePnt4X.Location = New System.Drawing.Point(4, 99)
         Me.lblLakePnt4X.Name = "lblLakePnt4X"
         Me.lblLakePnt4X.Size = New System.Drawing.Size(50, 13)
@@ -284,7 +284,7 @@ Partial Class frmLab2
         '
         'lblLakePnt3Y
         '
-        Me.lblLakePnt3Y.AutoSize = True
+        Me.lblLakePnt3Y.AutoSize = true
         Me.lblLakePnt3Y.Location = New System.Drawing.Point(102, 75)
         Me.lblLakePnt3Y.Name = "lblLakePnt3Y"
         Me.lblLakePnt3Y.Size = New System.Drawing.Size(50, 13)
@@ -293,7 +293,7 @@ Partial Class frmLab2
         '
         'lblLakePnt3X
         '
-        Me.lblLakePnt3X.AutoSize = True
+        Me.lblLakePnt3X.AutoSize = true
         Me.lblLakePnt3X.Location = New System.Drawing.Point(4, 75)
         Me.lblLakePnt3X.Name = "lblLakePnt3X"
         Me.lblLakePnt3X.Size = New System.Drawing.Size(50, 13)
@@ -318,7 +318,7 @@ Partial Class frmLab2
         '
         'lblLakePnt2Y
         '
-        Me.lblLakePnt2Y.AutoSize = True
+        Me.lblLakePnt2Y.AutoSize = true
         Me.lblLakePnt2Y.Location = New System.Drawing.Point(102, 52)
         Me.lblLakePnt2Y.Name = "lblLakePnt2Y"
         Me.lblLakePnt2Y.Size = New System.Drawing.Size(50, 13)
@@ -327,7 +327,7 @@ Partial Class frmLab2
         '
         'lblLakePnt2X
         '
-        Me.lblLakePnt2X.AutoSize = True
+        Me.lblLakePnt2X.AutoSize = true
         Me.lblLakePnt2X.Location = New System.Drawing.Point(4, 52)
         Me.lblLakePnt2X.Name = "lblLakePnt2X"
         Me.lblLakePnt2X.Size = New System.Drawing.Size(50, 13)
@@ -352,7 +352,7 @@ Partial Class frmLab2
         '
         'lblLakePnt1Y
         '
-        Me.lblLakePnt1Y.AutoSize = True
+        Me.lblLakePnt1Y.AutoSize = true
         Me.lblLakePnt1Y.Location = New System.Drawing.Point(102, 27)
         Me.lblLakePnt1Y.Name = "lblLakePnt1Y"
         Me.lblLakePnt1Y.Size = New System.Drawing.Size(50, 13)
@@ -361,7 +361,7 @@ Partial Class frmLab2
         '
         'lblLakePnt1X
         '
-        Me.lblLakePnt1X.AutoSize = True
+        Me.lblLakePnt1X.AutoSize = true
         Me.lblLakePnt1X.Location = New System.Drawing.Point(4, 27)
         Me.lblLakePnt1X.Name = "lblLakePnt1X"
         Me.lblLakePnt1X.Size = New System.Drawing.Size(50, 13)
@@ -370,7 +370,7 @@ Partial Class frmLab2
         '
         'lblChoosePoints
         '
-        Me.lblChoosePoints.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblChoosePoints.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.lblChoosePoints.Location = New System.Drawing.Point(4, 4)
         Me.lblChoosePoints.Name = "lblChoosePoints"
         Me.lblChoosePoints.Size = New System.Drawing.Size(191, 23)
@@ -379,7 +379,7 @@ Partial Class frmLab2
         '
         'frmLab2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Orange
         Me.ClientSize = New System.Drawing.Size(624, 441)
@@ -388,15 +388,15 @@ Partial Class frmLab2
         Me.Controls.Add(Me.btnTree)
         Me.Controls.Add(Me.btnLake)
         Me.Controls.Add(Me.btnBackground)
-        Me.KeyPreview = True
+        Me.KeyPreview = true
         Me.Name = "frmLab2"
         Me.Text = "Lab2"
-        Me.pnlLab2.ResumeLayout(False)
-        Me.pnlLakePoints.ResumeLayout(False)
-        Me.pnlLakePoints.PerformLayout()
-        Me.ResumeLayout(False)
+        Me.pnlLab2.ResumeLayout(false)
+        Me.pnlLakePoints.ResumeLayout(false)
+        Me.pnlLakePoints.PerformLayout
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
 
     Friend WithEvents btnBackground As Button
     Friend WithEvents btnLake As Button

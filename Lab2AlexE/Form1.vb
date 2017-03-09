@@ -74,6 +74,12 @@ Public Class frmLab2
 
     Dim cpntLakePoints(5) As Point
 
+    ' Text boxes for the x axas
+    Dim txtXTextBoxes() as TextBox
+
+    ' Text boxes for the y axas
+    Dim txtYTextBoxes() as TextBox
+
     Private Sub frmLab2_Load(sender As Object, e As EventArgs) Handles Me.Load
         '--------------------------------------------------------------------------------
         'Description: Prepares graphics and text boxes.
@@ -94,20 +100,34 @@ Public Class frmLab2
         mtxSprite = New Matrix(1, 0, 0, 1, cshtSpriteXStep, cshtSpriteYStep)
 
         pnlLakePoints.Visible = False
+        
+        txtXTextBoxes= New TextBox(){
+            txtLakePnt1X,
+            txtLakePnt2X,
+            txtLakePnt3X,
+            txtLakePnt4X,
+            txtLakePnt5X,
+            txtLakePnt6X
+        }
 
-        txtLakePnt1X.Text = "0"
-        txtLakePnt1Y.Text = "0"
-        txtLakePnt2X.Text = "0"
-        txtLakePnt2Y.Text = "0"
-        txtLakePnt3X.Text = "0"
-        txtLakePnt3Y.Text = "0"
-        txtLakePnt4X.Text = "0"
-        txtLakePnt4Y.Text = "0"
-        txtLakePnt5X.Text = "0"
-        txtLakePnt5Y.Text = "0"
-        txtLakePnt6X.Text = "0"
-        txtLakePnt6Y.Text = "0"
+        ' Text boxes for the y axas
+        txtYTextBoxes = New TextBox(){
+            txtLakePnt1Y,
+            txtLakePnt2Y,
+            txtLakePnt3Y,
+            txtLakePnt4Y,
+            txtLakePnt5Y,
+            txtLakePnt6Y
+        }
 
+        ' Set the (X,Y) text boxes to "0"
+        for each txtText as TextBox in txtXTextBoxes
+            txtText.Text = "0"
+        Next
+
+        for each txtText as TextBox in txtYTextBoxes
+            txtText.Text = "0"
+        Next
     End Sub
 
     Private Sub btnBackground_Click(sender As Object, e As EventArgs) Handles btnBackground.Click
@@ -246,33 +266,50 @@ Public Class frmLab2
         '             pnlLakePoints.
         '             Close pnlLakePoints and call sUpdateScreen.
         '--------------------------------------------------------------------------------
-
+        
+        ' Message to show on error
+        dim strErrorMessage = $"Please enter points between (0, 0) and ({pnlLab2.Width},{pnlLab2.Height})"
+        
+        ' Make the pannel visiable
         pnlLakePoints.Visible = False
 
+        ' Set lake to true
         boolLake = true
-        cpntLakePoints(0).X = CInt(txtLakePnt1X.Text)
-        cpntLakePoints(0).Y = CInt(txtLakePnt1Y.Text)
-        cpntLakePoints(1).X = CInt(txtLakePnt2X.Text)
-        cpntLakePoints(1).Y = CInt(txtLakePnt2Y.Text)
-        cpntLakePoints(2).X = CInt(txtLakePnt3X.Text)
-        cpntLakePoints(2).Y = CInt(txtLakePnt3Y.Text)
-        cpntLakePoints(3).X = CInt(txtLakePnt4X.Text)
-        cpntLakePoints(3).Y = CInt(txtLakePnt4Y.Text)
-        cpntLakePoints(4).X = CInt(txtLakePnt5X.Text)
-        cpntLakePoints(4).Y = CInt(txtLakePnt5Y.Text)
-        cpntLakePoints(5).X = CInt(txtLakePnt6X.Text)
-        cpntLakePoints(5).Y = CInt(txtLakePnt6Y.Text)
-
-        dim boolLakeCorrect as boolean = false
-        for each cpntLakePoint in cpntLakePoints
-            if cpntLakePoint.X < 0 OR cpntLakePoint.X > pnlLab2.Width OR
-                cpntLakePoint.Y < 0 OR cpntLakePoint.Y > pnlLab2.Height
-                boolLake = false
-                MessageBox.Show($"Please enter points between (0, 0) and ({pnlLab2.Width},{pnlLab2.Height}")
+        
+        ' Check if the points are parseable
+        dim intTempInt as Integer
+        for each txtTextBox as TextBox in txtXTextBoxes
+            if Not Integer.TryParse(txtTextBox.Text, intTempInt)
+                MessageBox.Show(strErrorMessage)
+                return
             End If
         Next
 
+        for each txtTextBox as TextBox in txtYTextBoxes
+            if Not Integer.TryParse(txtTextBox.Text, intTempInt)
+                MessageBox.Show(strErrorMessage)
+                return
+            End If
+        Next
+        
+        ' Parse the points
+        for shtI as Short = 0 to cshort(cpntLakePoints.Length) - 1S
+            cpntLakePoints(shtI) = new Point(
+                CInt(txtXTextBoxes(shtI).Text),
+                CInt(txtYTextBoxes(shtI).Text)
+                )
+        Next
 
+        ' Check if the points are all in the right range
+        for each cpntLakePoint as Point in cpntLakePoints
+            if cpntLakePoint.X < 0 OR cpntLakePoint.X > pnlLab2.Width OR
+                cpntLakePoint.Y < 0 OR cpntLakePoint.Y > pnlLab2.Height
+                boolLake = false
+                MessageBox.Show(strErrorMessage)
+                Return
+            End If
+        Next
+        
         sUpdateScreen()
 
     End Sub
@@ -286,36 +323,25 @@ Public Class frmLab2
 
         pnlLakePoints.Visible = False
         boolLake = False
-        txtLakePnt1X.Text = "0"
-        txtLakePnt1Y.Text = "0"
-        txtLakePnt2X.Text = "0"
-        txtLakePnt2Y.Text = "0"
-        txtLakePnt3X.Text = "0"
-        txtLakePnt3Y.Text = "0"
-        txtLakePnt4X.Text = "0"
-        txtLakePnt4Y.Text = "0"
-        txtLakePnt5X.Text = "0"
-        txtLakePnt5Y.Text = "0"
-        txtLakePnt6X.Text = "0"
-        txtLakePnt6Y.Text = "0"
 
-        cpntLakePoints(0).X = CInt(txtLakePnt1X.Text)
-        cpntLakePoints(0).Y = CInt(txtLakePnt1Y.Text)
-        cpntLakePoints(1).X = CInt(txtLakePnt2X.Text)
-        cpntLakePoints(1).Y = CInt(txtLakePnt2Y.Text)
-        cpntLakePoints(2).X = CInt(txtLakePnt3X.Text)
-        cpntLakePoints(2).Y = CInt(txtLakePnt3Y.Text)
-        cpntLakePoints(3).X = CInt(txtLakePnt4X.Text)
-        cpntLakePoints(3).Y = CInt(txtLakePnt4Y.Text)
-        cpntLakePoints(4).X = CInt(txtLakePnt5X.Text)
-        cpntLakePoints(4).Y = CInt(txtLakePnt5Y.Text)
-        cpntLakePoints(5).X = CInt(txtLakePnt6X.Text)
-        cpntLakePoints(5).Y = CInt(txtLakePnt6Y.Text)
+        ' Set the (X,Y) text boxes to "0"
+        for each txtText as TextBox in txtXTextBoxes
+            txtText.Text = "0"
+        Next
 
+        for each txtText as TextBox in txtYTextBoxes
+            txtText.Text = "0"
+        Next
+
+        ' Set the lake points to (0,0)
+        for each pntLakePoint in cpntLakePoints
+            pntLakePoint.X = 0
+            pntLakePoint.Y = 0
+        Next
+        
         graLake.Clear(pnlLab2.BackColor)
         sUpdateScreen()
-
-
+        
     End Sub
     Private Function fGetInputBox(strMessage As String, strTitle As String, shtDefaultValue As Short, shtMinValue As Short, shtMaxValue As Short) As Short
 
