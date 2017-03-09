@@ -66,8 +66,7 @@ Public Class frmLab2
     Dim boolSprite As Boolean
 
     Dim cintTreeType As Integer
-
-
+    
     Private Sub frmLab2_Load(sender As Object, e As EventArgs) Handles Me.Load
         '--------------------------------------------------------------------------------
         'Description: 
