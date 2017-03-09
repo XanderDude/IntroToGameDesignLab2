@@ -172,9 +172,9 @@ Public Class frmLab2
                 dim colPixelColor as Color = bmpOrignalTree.GetPixel(cshtOldTreeX, cshtOldTreeY)
 
                 ' Set the pixel for all the required positions
-                for cshtNewTreeX as short = cshtOldTreeX * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + (cshtTreeScale - 1S)
-                    for cshtNewTreeY as short = cshtOldTreeY * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + (cshtTreeScale - 1S)
-                        bmpTreeResized.SetPixel(cshtNewTreeX, cshtNewTreeY, colPixelColor)
+                for cshtOffsetX as short = 0 to cshtTreeScale - 1s
+                    for cshtOffsetY as short = 0 to cshtTreeScale - 1s
+                        bmpTreeResized.SetPixel(cshtOldTreeX + cshtOffsetX, cshtOldTreeY + cshtOffsetY, colPixelColor)
                     next
                 Next
             Next
