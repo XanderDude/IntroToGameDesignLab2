@@ -72,7 +72,7 @@ Public Class frmLab2
 
     Dim cintTreeType As Integer
 
-    Dim cpntPoly1(5) As Point
+    Dim cpntLakePoints(5) As Point
 
     Private Sub frmLab2_Load(sender As Object, e As EventArgs) Handles Me.Load
         '--------------------------------------------------------------------------------
@@ -143,8 +143,8 @@ Public Class frmLab2
 
         ' Draw the lake
         If boolLake = True Then
-            graLake.FillPolygon(Brushes.LightBlue, cpntPoly1)
-            graLake.DrawPolygon(Pens.Blue, cpntPoly1)
+            graLake.FillPolygon(Brushes.LightBlue, cpntLakePoints)
+            graLake.DrawPolygon(Pens.Blue, cpntLakePoints)
         End If
 
         ' Draw the tree
@@ -249,18 +249,29 @@ Public Class frmLab2
 
         pnlLakePoints.Visible = False
 
-        cpntPoly1(0).X = CInt(txtLakePnt1X.Text)
-        cpntPoly1(0).Y = CInt(txtLakePnt1Y.Text)
-        cpntPoly1(1).X = CInt(txtLakePnt2X.Text)
-        cpntPoly1(1).Y = CInt(txtLakePnt2Y.Text)
-        cpntPoly1(2).X = CInt(txtLakePnt3X.Text)
-        cpntPoly1(2).Y = CInt(txtLakePnt3Y.Text)
-        cpntPoly1(3).X = CInt(txtLakePnt4X.Text)
-        cpntPoly1(3).Y = CInt(txtLakePnt4Y.Text)
-        cpntPoly1(4).X = CInt(txtLakePnt5X.Text)
-        cpntPoly1(4).Y = CInt(txtLakePnt5Y.Text)
-        cpntPoly1(5).X = CInt(txtLakePnt6X.Text)
-        cpntPoly1(5).Y = CInt(txtLakePnt6Y.Text)
+        boolLake = true
+        cpntLakePoints(0).X = CInt(txtLakePnt1X.Text)
+        cpntLakePoints(0).Y = CInt(txtLakePnt1Y.Text)
+        cpntLakePoints(1).X = CInt(txtLakePnt2X.Text)
+        cpntLakePoints(1).Y = CInt(txtLakePnt2Y.Text)
+        cpntLakePoints(2).X = CInt(txtLakePnt3X.Text)
+        cpntLakePoints(2).Y = CInt(txtLakePnt3Y.Text)
+        cpntLakePoints(3).X = CInt(txtLakePnt4X.Text)
+        cpntLakePoints(3).Y = CInt(txtLakePnt4Y.Text)
+        cpntLakePoints(4).X = CInt(txtLakePnt5X.Text)
+        cpntLakePoints(4).Y = CInt(txtLakePnt5Y.Text)
+        cpntLakePoints(5).X = CInt(txtLakePnt6X.Text)
+        cpntLakePoints(5).Y = CInt(txtLakePnt6Y.Text)
+
+        dim boolLakeCorrect as boolean = false
+        for each cpntLakePoint in cpntLakePoints
+            if cpntLakePoint.X < 0 OR cpntLakePoint.X > pnlLab2.Width OR
+                cpntLakePoint.Y < 0 OR cpntLakePoint.Y > pnlLab2.Height
+                boolLake = false
+                MessageBox.Show($"Please enter points between (0, 0) and ({pnlLab2.Width},{pnlLab2.Height}")
+            End If
+        Next
+
 
         sUpdateScreen()
 
@@ -268,7 +279,7 @@ Public Class frmLab2
 
     Private Sub btnLakeReset_Click(sender As Object, e As EventArgs) Handles btnLakeReset.Click
         '--------------------------------------------------------------------------------
-        'Description: On click, reset text boxes in pnlLakePoints, reset cpntPoly1(), and
+        'Description: On click, reset text boxes in pnlLakePoints, reset cpntLakePoints(), and
         '             clear graphics.
         '             Call sUpdateScreen.
         '--------------------------------------------------------------------------------
@@ -288,18 +299,18 @@ Public Class frmLab2
         txtLakePnt6X.Text = "0"
         txtLakePnt6Y.Text = "0"
 
-        cpntPoly1(0).X = CInt(txtLakePnt1X.Text)
-        cpntPoly1(0).Y = CInt(txtLakePnt1Y.Text)
-        cpntPoly1(1).X = CInt(txtLakePnt2X.Text)
-        cpntPoly1(1).Y = CInt(txtLakePnt2Y.Text)
-        cpntPoly1(2).X = CInt(txtLakePnt3X.Text)
-        cpntPoly1(2).Y = CInt(txtLakePnt3Y.Text)
-        cpntPoly1(3).X = CInt(txtLakePnt4X.Text)
-        cpntPoly1(3).Y = CInt(txtLakePnt4Y.Text)
-        cpntPoly1(4).X = CInt(txtLakePnt5X.Text)
-        cpntPoly1(4).Y = CInt(txtLakePnt5Y.Text)
-        cpntPoly1(5).X = CInt(txtLakePnt6X.Text)
-        cpntPoly1(5).Y = CInt(txtLakePnt6Y.Text)
+        cpntLakePoints(0).X = CInt(txtLakePnt1X.Text)
+        cpntLakePoints(0).Y = CInt(txtLakePnt1Y.Text)
+        cpntLakePoints(1).X = CInt(txtLakePnt2X.Text)
+        cpntLakePoints(1).Y = CInt(txtLakePnt2Y.Text)
+        cpntLakePoints(2).X = CInt(txtLakePnt3X.Text)
+        cpntLakePoints(2).Y = CInt(txtLakePnt3Y.Text)
+        cpntLakePoints(3).X = CInt(txtLakePnt4X.Text)
+        cpntLakePoints(3).Y = CInt(txtLakePnt4Y.Text)
+        cpntLakePoints(4).X = CInt(txtLakePnt5X.Text)
+        cpntLakePoints(4).Y = CInt(txtLakePnt5Y.Text)
+        cpntLakePoints(5).X = CInt(txtLakePnt6X.Text)
+        cpntLakePoints(5).Y = CInt(txtLakePnt6Y.Text)
 
         graLake.Clear(pnlLab2.BackColor)
         sUpdateScreen()
@@ -326,14 +337,14 @@ Public Class frmLab2
 
             ' User entered invalid input
             If Not Short.TryParse(strInput, shtValue) Then
-                MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
+                MessageBox.Show($"Invalid number. Please enter a number between {shtMinValue} and {shtMaxValue}")
                 Continue While
             End If
 
-
+            
             ' User entered invalid input
             If shtValue < shtMinValue Or shtValue > shtMaxValue Then
-                MessageBox.Show("Invalid number. Please enter a number between " & shtMinValue & " and " & shtMaxValue)
+                MessageBox.Show($"Invalid number. Please enter a number between {shtMinValue} and {shtMaxValue}")
                 Continue While
             End If
 
