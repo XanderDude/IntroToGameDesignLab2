@@ -71,8 +71,7 @@ Public Class frmLab2
         '--------------------------------------------------------------------------------
         'Description: 
         '--------------------------------------------------------------------------------
-
-    
+        
         graBG = pnlLab2.CreateGraphics
         bmpBuffer = New Bitmap(pnlLab2.Width, pnlLab2.Height, graBG)
         graBGBuffer = Graphics.FromImage(bmpBuffer)
