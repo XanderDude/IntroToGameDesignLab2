@@ -14,7 +14,7 @@
 '
 '
 'Bugs:
-' - Giving incorrect values for the Lake's points will crash.
+' - Giving incorrect values for the Lake's points will crash. -- Fixed
 ' - Can't exit out of the input boxes.
 '========================================================================================
 
