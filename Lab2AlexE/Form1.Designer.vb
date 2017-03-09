@@ -390,7 +390,7 @@ Partial Class frmLab2
         Me.Controls.Add(Me.btnBackground)
         Me.KeyPreview = True
         Me.Name = "frmLab2"
-        Me.Text = "Form1"
+        Me.Text = "Lab2"
         Me.pnlLab2.ResumeLayout(False)
         Me.pnlLakePoints.ResumeLayout(False)
         Me.pnlLakePoints.PerformLayout()
