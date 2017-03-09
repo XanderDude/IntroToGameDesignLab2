@@ -150,7 +150,7 @@ Public Class frmLab2
     Private Sub frmLab2_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         ' Constant speed the character moves at
         const cshtSpeed as Short = 5
-
+        
         ' Move the character
         select e.KeyCode
             Case Keys.W
