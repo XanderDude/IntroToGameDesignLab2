@@ -100,11 +100,18 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnBackground_Click(sender As Object, e As EventArgs) Handles btnBackground.Click
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
+
         boolBG = True
         sUpdateScreen()
     End Sub
 
     Private Sub btnLake_Click(sender As Object, e As EventArgs) Handles btnLake.Click
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
 
         boolLake = True
 
@@ -112,6 +119,9 @@ Public Class frmLab2
 
     End Sub
     Private Sub sUpdateScreen()
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
 
         graBGBuffer.DrawImageUnscaled(bmpBG, 0, 0)
 
@@ -132,6 +142,9 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnTree_Click(sender As Object, e As EventArgs) Handles btnTree.Click
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
 
         boolTree = True
 
@@ -154,11 +167,19 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnCharacter_Click(sender As Object, e As EventArgs) Handles btnCharacter.Click
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
+
         boolSprite = True
         sUpdateScreen()
     End Sub
 
     Private Sub frmLab2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
+
         Dim shtviewWidth As Short = CShort(pnlLab2.Width)
 
         If e.KeyCode = Keys.Right And cshtSpriteX < (shtviewWidth - 3 - bmpSprite.Width) Then
@@ -174,6 +195,9 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnLakePntsConfirm_Click(sender As Object, e As EventArgs) Handles btnLakePntsConfirm.Click
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
 
         Dim pntPoly1(5) As Point
 
@@ -192,8 +216,36 @@ Public Class frmLab2
         pntPoly1(5).X = CInt(txtLakePnt6X.Text)
         pntPoly1(5).Y = CInt(txtLakePnt6Y.Text)
 
-        graLake.FillPolygon(Brushes.Blue, pntPoly1)
-        graLake.DrawPolygon(Pens.LightBlue, pntPoly1)
+        graLake.FillPolygon(Brushes.LightBlue, pntPoly1)
+        graLake.DrawPolygon(Pens.Blue, pntPoly1)
+
+        sUpdateScreen()
+
+    End Sub
+
+    Private Sub btnLakeReset_Click(sender As Object, e As EventArgs) Handles btnLakeReset.Click
+        '--------------------------------------------------------------------------------
+        'Description: 
+        '--------------------------------------------------------------------------------
+
+        pnlLakePoints.Visible = False
+
+        txtLakePnt1X.Clear()
+        txtLakePnt1Y.Clear()
+        txtLakePnt2X.Clear()
+        txtLakePnt2Y.Clear()
+        txtLakePnt3X.Clear()
+        txtLakePnt3Y.Clear()
+        txtLakePnt4X.Clear()
+        txtLakePnt4Y.Clear()
+        txtLakePnt5X.Clear()
+        txtLakePnt5Y.Clear()
+        txtLakePnt6X.Clear()
+        txtLakePnt6Y.Clear()
+
+        graLake.Clear(pnlLab2.BackColor)
+        sUpdateScreen()
+
 
     End Sub
 End Class

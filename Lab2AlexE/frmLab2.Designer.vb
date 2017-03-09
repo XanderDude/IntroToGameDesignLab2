@@ -54,6 +54,7 @@ Partial Class frmLab2
         Me.lblLakePnt1Y = New System.Windows.Forms.Label()
         Me.lblLakePnt1X = New System.Windows.Forms.Label()
         Me.lblChoosePoints = New System.Windows.Forms.Label()
+        Me.btnLakeReset = New System.Windows.Forms.Button()
         Me.pnlLab2.SuspendLayout()
         Me.pnlLakePoints.SuspendLayout()
         Me.SuspendLayout()
@@ -111,6 +112,7 @@ Partial Class frmLab2
         '
         Me.pnlLakePoints.BackColor = System.Drawing.Color.LightCyan
         Me.pnlLakePoints.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlLakePoints.Controls.Add(Me.btnLakeReset)
         Me.pnlLakePoints.Controls.Add(Me.btnLakePntsConfirm)
         Me.pnlLakePoints.Controls.Add(Me.txtLakePnt6Y)
         Me.pnlLakePoints.Controls.Add(Me.txtLakePnt6X)
@@ -145,7 +147,7 @@ Partial Class frmLab2
         'btnLakePntsConfirm
         '
         Me.btnLakePntsConfirm.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.btnLakePntsConfirm.Location = New System.Drawing.Point(60, 171)
+        Me.btnLakePntsConfirm.Location = New System.Drawing.Point(109, 172)
         Me.btnLakePntsConfirm.Name = "btnLakePntsConfirm"
         Me.btnLakePntsConfirm.Size = New System.Drawing.Size(75, 23)
         Me.btnLakePntsConfirm.TabIndex = 25
@@ -155,6 +157,7 @@ Partial Class frmLab2
         'txtLakePnt6Y
         '
         Me.txtLakePnt6Y.Location = New System.Drawing.Point(158, 146)
+        Me.txtLakePnt6Y.MaxLength = 3
         Me.txtLakePnt6Y.Name = "txtLakePnt6Y"
         Me.txtLakePnt6Y.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt6Y.TabIndex = 24
@@ -162,6 +165,7 @@ Partial Class frmLab2
         'txtLakePnt6X
         '
         Me.txtLakePnt6X.Location = New System.Drawing.Point(60, 146)
+        Me.txtLakePnt6X.MaxLength = 3
         Me.txtLakePnt6X.Name = "txtLakePnt6X"
         Me.txtLakePnt6X.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt6X.TabIndex = 23
@@ -187,6 +191,7 @@ Partial Class frmLab2
         'txtLakePnt5Y
         '
         Me.txtLakePnt5Y.Location = New System.Drawing.Point(158, 121)
+        Me.txtLakePnt5Y.MaxLength = 3
         Me.txtLakePnt5Y.Name = "txtLakePnt5Y"
         Me.txtLakePnt5Y.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt5Y.TabIndex = 20
@@ -194,6 +199,7 @@ Partial Class frmLab2
         'txtLakePnt5X
         '
         Me.txtLakePnt5X.Location = New System.Drawing.Point(60, 121)
+        Me.txtLakePnt5X.MaxLength = 3
         Me.txtLakePnt5X.Name = "txtLakePnt5X"
         Me.txtLakePnt5X.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt5X.TabIndex = 19
@@ -219,6 +225,7 @@ Partial Class frmLab2
         'txtLakePnt4Y
         '
         Me.txtLakePnt4Y.Location = New System.Drawing.Point(158, 96)
+        Me.txtLakePnt4Y.MaxLength = 3
         Me.txtLakePnt4Y.Name = "txtLakePnt4Y"
         Me.txtLakePnt4Y.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt4Y.TabIndex = 16
@@ -226,6 +233,7 @@ Partial Class frmLab2
         'txtLakePnt4X
         '
         Me.txtLakePnt4X.Location = New System.Drawing.Point(60, 96)
+        Me.txtLakePnt4X.MaxLength = 3
         Me.txtLakePnt4X.Name = "txtLakePnt4X"
         Me.txtLakePnt4X.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt4X.TabIndex = 15
@@ -251,6 +259,7 @@ Partial Class frmLab2
         'txtLakePnt3Y
         '
         Me.txtLakePnt3Y.Location = New System.Drawing.Point(158, 72)
+        Me.txtLakePnt3Y.MaxLength = 3
         Me.txtLakePnt3Y.Name = "txtLakePnt3Y"
         Me.txtLakePnt3Y.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt3Y.TabIndex = 12
@@ -258,6 +267,7 @@ Partial Class frmLab2
         'txtLakePnt3X
         '
         Me.txtLakePnt3X.Location = New System.Drawing.Point(60, 72)
+        Me.txtLakePnt3X.MaxLength = 3
         Me.txtLakePnt3X.Name = "txtLakePnt3X"
         Me.txtLakePnt3X.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt3X.TabIndex = 11
@@ -283,6 +293,7 @@ Partial Class frmLab2
         'txtLakePnt2Y
         '
         Me.txtLakePnt2Y.Location = New System.Drawing.Point(158, 49)
+        Me.txtLakePnt2Y.MaxLength = 3
         Me.txtLakePnt2Y.Name = "txtLakePnt2Y"
         Me.txtLakePnt2Y.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt2Y.TabIndex = 8
@@ -290,6 +301,7 @@ Partial Class frmLab2
         'txtLakePnt2X
         '
         Me.txtLakePnt2X.Location = New System.Drawing.Point(60, 49)
+        Me.txtLakePnt2X.MaxLength = 3
         Me.txtLakePnt2X.Name = "txtLakePnt2X"
         Me.txtLakePnt2X.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt2X.TabIndex = 7
@@ -315,6 +327,7 @@ Partial Class frmLab2
         'txtLakePnt1Y
         '
         Me.txtLakePnt1Y.Location = New System.Drawing.Point(158, 24)
+        Me.txtLakePnt1Y.MaxLength = 3
         Me.txtLakePnt1Y.Name = "txtLakePnt1Y"
         Me.txtLakePnt1Y.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt1Y.TabIndex = 4
@@ -322,6 +335,7 @@ Partial Class frmLab2
         'txtLakePnt1X
         '
         Me.txtLakePnt1X.Location = New System.Drawing.Point(60, 24)
+        Me.txtLakePnt1X.MaxLength = 3
         Me.txtLakePnt1X.Name = "txtLakePnt1X"
         Me.txtLakePnt1X.Size = New System.Drawing.Size(26, 20)
         Me.txtLakePnt1X.TabIndex = 3
@@ -352,6 +366,16 @@ Partial Class frmLab2
         Me.lblChoosePoints.Size = New System.Drawing.Size(191, 23)
         Me.lblChoosePoints.TabIndex = 0
         Me.lblChoosePoints.Text = "Pick the points for your lake"
+        '
+        'btnLakeReset
+        '
+        Me.btnLakeReset.BackColor = System.Drawing.Color.OrangeRed
+        Me.btnLakeReset.Location = New System.Drawing.Point(7, 172)
+        Me.btnLakeReset.Name = "btnLakeReset"
+        Me.btnLakeReset.Size = New System.Drawing.Size(75, 23)
+        Me.btnLakeReset.TabIndex = 26
+        Me.btnLakeReset.Text = "Reset"
+        Me.btnLakeReset.UseVisualStyleBackColor = False
         '
         'frmLab2
         '
@@ -405,4 +429,5 @@ Partial Class frmLab2
     Friend WithEvents lblLakePnt2Y As Label
     Friend WithEvents lblLakePnt2X As Label
     Friend WithEvents btnLakePntsConfirm As Button
+    Friend WithEvents btnLakeReset As Button
 End Class
