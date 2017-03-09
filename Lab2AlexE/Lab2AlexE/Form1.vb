@@ -216,6 +216,7 @@ Public Class frmLab2
         Dim strInput As string
         Dim shtValue as Short
 
+        ' Loop until the user enters a legit value
         While true
             ' Get user input
             strInput = InputBox(strMessage, strTitle, Cstr(shtDefaultValue))
