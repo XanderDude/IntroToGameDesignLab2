@@ -131,20 +131,17 @@ Public Class frmLab2
     End Sub
 
     Private Sub btnTree_Click(sender As Object, e As EventArgs) Handles btnTree.Click
-        Dim cshtTreeSize as Short
+        Dim cshtTreeScale as Short
         Dim bmpOrignalTree as Bitmap
         
+        ' Get the inputs
         cshtTreeX = fGetInputBox("Please enter the x position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Width))
         cshtTreeY = fGetInputBox("Please enter the y position of tree", "Tree Position", 0, 0, CShort(pnlLab2.Height))
         cshtTreeType = fGetInputBox("Please enter the type of tree (1-3)", "Tree Type", 1, 1, 3)
-        cshtTreeSize = fGetInputBox("Please enter the scale of the tree (1-20)", "Tree Size", 1, 1, 20)
-
-        ' Set the tree height and width
-        cshtTreeH = CShort(bmpTree1.Height) * cshtTreeSize
-        cshtTreeW = CShort(bmpTree1.Width) * cshtTreeSize
-
+        cshtTreeScale = fGetInputBox("Please enter the scale of the tree (1-20)", "Tree Size", 1, 1, 20)
+        
         ' Get the tree
-        select cshttreeType
+        select cshtTreeType
             Case 1
                 bmpOrignalTree = bmpTree1
             Case 2
@@ -156,6 +153,10 @@ Public Class frmLab2
                 ' (This is needed so the compiler doesn't freak out)
                 Throw new Exception("Tree type was somehow set to a number that is out of range")
         End Select
+        
+        ' Set the tree height and width
+        cshtTreeH = CShort(bmpOrignalTree.Height) * cshtTreeScale
+        cshtTreeW = CShort(bmpOrignalTree.Width) * cshtTreeScale
 
         ' Dispose the old tree 
         ' Yes the ? is supose to be there,
@@ -167,13 +168,13 @@ Public Class frmLab2
 
         ' resize the current bitmap
         for cshtOldTreeX as short = 0 to CShort(bmpOrignalTree.Width - 1)
-            for cshtOldTreeY as short = 0 to CShort(bmpOrignalTree.Height -1)
+            for cshtOldTreeY as short = 0 to CShort(bmpOrignalTree.Height - 1)
                 ' Get the pixel for that position
                 dim colPixelColor as Color = bmpOrignalTree.GetPixel(cshtOldTreeX, cshtOldTreeY)
 
                 ' Set the pixel for all the required positions
-                for cshtNewTreeX as short = cshtOldTreeX * cshtTreeType to (cshtOldTreeX * cshtTreeType) + cshtTreeType - 1s
-                    for cshtNewTreeY as short = cshtOldTreeY * cshtTreeType to (cshtOldTreeY * cshtTreeType) + cshtTreeType - 1s
+                for cshtNewTreeX as short = cshtOldTreeX * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + cshtTreeScale
+                    for cshtNewTreeY as short = cshtOldTreeY * cshtTreeScale to (cshtOldTreeX * cshtTreeScale) + cshtTreeScale
                         bmpTreeResized.SetPixel(cshtNewTreeX, cshtNewTreeY, colPixelColor)
                     next
                 Next
